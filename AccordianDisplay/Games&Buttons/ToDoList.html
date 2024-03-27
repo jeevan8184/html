@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>To-Do List</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#app {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input {
+    width: 70%;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+button {
+    padding: 8px;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>To-Do List</h1>
+        <div>
+            <input type="text" id="taskInput" placeholder="Add a new task">
+            <button onclick="addTask()">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+    <script> 
+    function addTask() {
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+
+    if (taskInput.value.trim() === '') {
+        alert('Please enter a task.');
+        return;
+    }
+
+    const newTask = document.createElement('li');
+    newTask.innerHTML = `
+        <span>${taskInput.value}</span>
+        <button onclick="completeTask(this)">Complete</button>
+        <button onclick="deleteTask(this)">Delete</button>
+    `;
+
+    taskList.appendChild(newTask);
+    taskInput.value = '';
+}
+
+function completeTask(button) {
+    const task = button.parentNode;
+    task.classList.toggle('completed');
+}
+
+function deleteTask(button) {
+    const task = button.parentNode;
+    task.remove();
+} 
+
+    
+    </script>
+</body>
+</html>

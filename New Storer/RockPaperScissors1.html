@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin:0;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        } 
+        #result {
+            font-size: 1.2rem;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1>Rock,Paper,Scissors Game</h1>
+        <p>Select Your Move</p>
+        <button id="rock" onclick="rockChoose()">Rock</button>
+        <button id="paper" onclick="paperChoose()">Paper</button>
+        <button id="scissors" onclick="scissorsChoose()">scissors</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const choices=['rock','paper','scissors']
+        
+        function computerMove() {
+            return choices[Math.floor(Math.random()*choices.length)]
+        } 
+        function rockChoose() {
+            
+            if(computerMove()==='rock') {
+                document.getElementById('result').textContent=`You choose rock . Computer choose ${computerMove()} . Its a Tie Match! `
+            }
+            else if(computerMove()==='paper') {
+                document.getElementById('result').textContent=`You choose rock . Computer choose ${computerMove()} . Computer Won! `
+            } else {
+                document.getElementById('result').textContent=`You choose rock . Computer choose ${computerMove()} . You Won! `
+            }
+        } 
+
+        function paperChoose() {
+            
+            if(computerMove()==='paper') {
+                document.getElementById('result').textContent=`You choose paper . Computer choose ${computerMove()} . Its a Tie Match! `
+            }
+            else if(computerMove()==='scissors') {
+                document.getElementById('result').textContent=`You choose paper . Computer choose ${computerMove()} . Computer Won! `
+            } else {
+                document.getElementById('result').textContent=`You choose paper . Computer choose ${computerMove()} . You Won! `
+            }
+        }
+
+        function scissorsChoose() {
+            
+            if(computerMove()==='scissors') {
+                document.getElementById('result').textContent=`You choose scissors . Computer choose ${computerMove()} . Its a Tie Match! `
+            }
+            else if(computerMove()==='rock') {
+                document.getElementById('result').textContent=`You choose scissors . Computer choose ${computerMove()} . Computer Won! `
+            } else {
+                document.getElementById('result').textContent=`You choose scissors . Computer choose ${computerMove()} . You Won! `
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

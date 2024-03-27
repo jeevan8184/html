@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: salmon;
+            font-family: cursive;
+        }
+        .box {
+            height: 350px;
+            width:350px;
+            border-radius: 100%;
+            border:5px solid darkgray;
+            background-color: lightgray;
+            position: relative;
+        } 
+        .numbers div{
+            position: absolute;
+            font-size: 24px;
+            color: lightgoldenrodyellow;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+            font-weight: 700;
+            
+        }
+        .twelve {
+            left: 50%;
+            top: 6px;
+            transform: translateX(-50%);
+        }
+        .three {
+            right:6px;
+            top:50%;
+            transform: translateY(-50%);
+        }
+        .six {
+            left: 50%;
+            bottom:6px;
+            transform: translateX(-50%);
+        }
+        .nine {
+            left:6px;
+            top:50%;
+            transform: translateY(-50%);
+        }
+        .arrows {
+            height:100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .arrows::before {
+            content: "";
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            background-color: darkgreen;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+            z-index: 4;
+        }
+        .arrows div{
+            width:7px;
+            height: 120px;
+            background-color: white;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.7);
+            position: absolute;
+            transform-origin: bottom center;
+            bottom: 50%;
+            left:50%;
+            border-radius: 50% 50% 0 0;
+            z-index: 3;
+        }
+        .arrows .hour {
+            height:80px;
+            transform: rotate(30deg);
+        }
+        .arrows .second {
+            background-color:goldenrod;
+            transform: rotate(250deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <div class="numbers">
+            <div class="twelve">12</div>
+            <div class="three">3</div>
+            <div class="six">6</div>
+            <div class="nine">9</div>
+        </div> 
+        <div class="arrows">
+            <div class="hour"></div>
+            <div class="minute"></div>
+            <div class="second"></div>
+        </div>
+    </div>
+
+    <script>
+        const hourEl=document.querySelector('.hour')
+        const minuteEl=document.querySelector('.minute')
+        const secondEl=document.querySelector('.second')
+
+        function displayTime() {
+
+            const currTime=new Date();
+            const hour=currTime.getHours()
+            const minute=currTime.getMinutes()
+            const second=currTime.getSeconds()
+
+            const s=(second/60)*360
+            const m=(minute/60)*360
+            const h=(hour/12)*360
+
+            secondEl.style.transform=`rotate(${s}deg)`
+            minuteEl.style.transform=`rotate(${m}deg)`
+            hourEl.style.transform=`rotate(${h}deg)`
+        }
+        setInterval(displayTime,1000)
+        
+    </script>
+    
+</body>
+</html>

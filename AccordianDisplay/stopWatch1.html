@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f4f4f4;
+            height:100vh;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            border:Border-box;
+            
+        }
+        #time {
+            margin: 15px;
+            font-size: 3rem;
+        }
+        .butt {
+            padding:6px 10px;
+            margin-left:10px;
+            border-radius: 5px;
+            font-size:1.1rem
+        }
+        .all {
+            display: flex;
+        }
+        .box {
+            background-color: white;
+            padding:30px;
+            box-shadow:0 0 7px black;
+            border-radius: 5px;
+        }
+        .start {
+            background-color: darkgreen;
+            color: white;
+        }
+        .start:hover{
+            background-color:white;
+            color: black;
+        }
+
+        .stop {
+            background-color: red;
+            color: white;
+        }
+        .stop:hover{
+            background-color:white;
+            color: black;
+        }
+
+        .reset {
+            background-color: yellow;
+            color: black;
+
+        }
+        .reset:hover{
+            background-color:white;
+            color: black;
+        }
+
+        
+        
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Timer</h1>
+            <div id="time">00:00:00</div>
+            <div class="all">
+                <button class="start butt" onclick="startTimer()">Start</button>
+                <button class="stop butt" onclick="stopTimer()">Stop</button>
+                <button class="reset butt" onclick="resetTimer()">Reset</button>
+            </div>
+    </div>
+
+    <script>
+        let secondsRemaining=0
+        let intervalId
+        function startTimer() {
+            if(!intervalId) {
+                intervalId=setInterval(updateDisplay,1000)
+            }
+        }
+        function stopTimer() {
+            clearInterval(intervalId)
+            intervalId=undefined
+        }
+        function resetTimer() {
+            stopTimer()
+            secondsRemaining=0
+            display()
+        }
+        function updateDisplay() {
+            secondsRemaining++
+            display()
+        }
+        function display() {
+            const hours=Math.floor(secondsRemaining/3600)
+            const minutes=Math.floor((secondsRemaining/3600)/60)
+            const seconds=(secondsRemaining%60)
+
+            const timerValue =`${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`
+            document.getElementById('time').textContent=timerValue
+        } 
+            function padZero(time) {
+            return time<10?`0${time}`:`${time}`
+           }
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+            background-color: #f5abc9;
+
+        } 
+        .items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }  
+        .box {
+            background-color: aliceblue;
+            border-radius: 6px;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+       
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Temparature Converter</h1>
+        <div class="items">
+            <label for="celsius" ><h3>celcius : </h3></label>
+            <input type="number" placeholder="Enter Temparature" id="celcius" name="celcius" onchange="changeToTemp(event)">
+        </div>
+        <div class="items">
+            <label for="fahrenheit" ><h3>Fahrenheit : </h3></label>
+            <input type="number" placeholder="Enter Temparature" id="fahrenheit" name="fahrenheit" onchange="changeToTemp(event)">
+        </div>
+        <div class="items">
+            <label for="kelvin"><h3>Kelvin : </h3></label>
+            <input type="number" placeholder="Enter Temparature" id="kelvin" name="kelvin" onchange="changeToTemp(event)">
+        </div>
+    </div>
+        <script>
+            const celcius=document.getElementById('celcius')
+            const fahrenheit=document.getElementById('fahrenheit')
+            const kelvin=document.getElementById('kelvin')
+
+            function changeToTemp(event) {
+                const currValue= +event.target.value 
+                switch(event.target.name) {
+                    case 'celcius' : 
+                    fahrenheit.value=(1.8*currValue+32).toFixed(2)
+                    kelvin.value=(273.32+currValue).toFixed(2)
+                    break
+                    case 'fahrenheit': 
+                    celcius.value=((currValue-32)*5/9).toFixed(2)
+                    kelvin.value=((currValue-32)*1.8+273.15).toFixed(2)
+                    break    
+                    case 'kelvin': 
+                    celcius.value=(currValue-273).toFixed(2)
+                    fahrenheit.value=(((currValue-273.15)/1.8)+32).toFixed(2)
+                    break
+                    
+                }
+
+            }
+
+        </script>
+        
+
+    </div>
+
+</body>
+</html>

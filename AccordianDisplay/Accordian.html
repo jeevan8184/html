@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin:0;
+            background-color: #f4f4f4;
+            font-family: Arial, Helvetica, sans-serif;
+            height:100vh;
+            display: flex;
+            justify-content: center;
+            margin-top:100px;
+        }
+        .accordian {
+            width:300px;
+        }
+        .section {
+            border:1px solid #ddd;
+            margin-bottom:5px;
+        }
+        
+        .body {
+            display:none;
+            padding:10px;
+            background-color:black;
+            color:white;
+        }
+        .header {
+            padding:10px;
+            background-color: #f1f1f1a1;
+            cursor: pointer;
+        }
+        .section:hover {
+            background-color:#f1f1f151;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="accordian">
+        <div class="section"> 
+           
+                <div class="header" onclick="toggleSection(1)">Section 1</div>
+             
+           
+            <div class="body" id="section1">iusto veritatis!</div>
+        </div>
+
+        <div class="section">
+            
+                <div class="header" onclick="toggleSection(2)">Section 2</div>
+          
+           
+            <div class="body" id="section2">Lorem </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        function toggleSection(sectionNumber) {
+            const section=document.getElementById(`section${sectionNumber}`)
+            section.style.display=section.style.display==='none'? 'block' :'none'
+        }
+
+
+    </script>
+    
+
+</body>
+</html>

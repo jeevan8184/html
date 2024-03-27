@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin:0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color:#f4f4f4;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+         .container {
+            text-align:center;
+        }
+        #gallery {
+            margin-bottom:20px;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            
+        }     
+        .naigation {
+            display:flex;
+            justify-content:space-between;
+        }
+
+        button {
+            padding:10px;
+            cursor:pointer;
+            background-color: aqua;
+        }
+
+        .imageView {
+            height:400px;
+            width:400px;
+            background-size: cover;
+            
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Photo Gallery</h1>
+        <div id="gallery">
+            <img src="Netflix.jpg" alt="image2" class="imageView" >
+            <img src="page1.png" alt="image3" class="imageView" style="display: none;">
+            <img src="box1.jpg" alt="image1" class="imageView" style="display: none;">
+        </div> 
+        <div class="navigation">
+            <button onclick="prevImage()" >Previous</button>
+            <button onclick="nextImage()" >Next</button>
+        </div>
+    </div>
+
+    <script>
+        var currentImageIndex=0;
+        var images=document.getElementById('gallery').getElementsByTagName('img')
+        var totalImages=images.length
+        function showImage(idx) {
+            images[currentImageIndex].style.display='none'
+            currentImageIndex=(idx+totalImages) % totalImages
+            images[currentImageIndex].style.display='block'
+        }
+        function nextImage() {
+            showImage(currentImageIndex+1)
+        }
+        function prevImage() {
+            showImage(currentImageIndex-1)
+        }
+
+
+    </script>
+
+</body>
+</html>

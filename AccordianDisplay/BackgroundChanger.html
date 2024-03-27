@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin:0;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: default;
+            
+
+        }
+        #colorbox {
+            border-radius:4px;
+            background-color: rgb(238, 234, 234);
+            box-shadow: 0 1px 3px black;
+            width:40%;
+            height:50px;   
+            padding:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .box {
+            height:40px;
+            width:40px;
+            border-radius:50%;
+            margin-right:20px;
+        }
+        .box0 {
+            background-color:white;
+            cursor: pointer;
+            border:2px solid white;
+        }
+       .box1 {
+            background-color:aquamarine;
+            cursor: pointer;
+            border:2px solid aquamarine;
+        }
+        
+        .box2 {
+            background-color:aqua;
+            cursor: pointer;
+            border:2px solid aqua;
+        }
+        .box3 {
+            background-color:blueviolet;
+            cursor: pointer;
+            border:2px solid blueviolet;
+        }
+        .box4 {
+            background-color:chartreuse;
+            cursor: pointer;
+            border:2px solid chartreuse;
+        }
+        .box5 {
+            background-color:yellow;
+            cursor: pointer;
+            border:2px solid yellow;
+        }
+        
+    </style>
+</head>
+<body id="body">
+    
+    <h1>Background Changer</h1>
+    <div id="colorbox">
+        <button class="box0 box" onclick="box('white')"></button>
+        <button class="box1 box" onclick="box('aquamarine')"></button>
+        <button class="box2 box" onclick="box('aqua')"></button>
+        <button class="box3 box" onclick="box('blueviolet')"></button>
+        <button class="box4 box" onclick="box('chartreuse')"></button>
+        <button class="box5 box" onclick="box('yellow')"></button>
+    </div>
+
+    <script>
+
+        function box(color) {
+            document.getElementById('body').style.backgroundColor=color
+        }
+
+    </script>
+
+    
+</body>
+</html>

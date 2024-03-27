@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            height:100vh;
+            display: flex;
+            justify-content:center;
+            
+        }
+        .box {
+            display:flex;
+        }       
+        #text {
+            font-size:1rem;
+            padding:11px;
+            border:none;
+        }
+        #text:hover {
+            border:1px solid black;
+        }
+        #Add {
+            background-color: rgb(59, 157, 59);
+            padding:10px;
+            font-size:1rem;
+            color:white;
+            border-radius:3px;
+        }
+        #Add:hover {
+            background-color: green;
+        }
+        #butt1 {
+            background-color:yellow;
+            height:40px;
+            border:1px solid black;
+            margin-right:5px;
+            border-radius:3px;
+        }
+        #butt2 {
+            background-color:red;
+            color:white;
+            height:40px;
+            border:1px solid black;
+            border-radius:3px;
+            margin-right:5px;
+            
+        }
+        .list-group  {
+            list-style-type: none;
+            display:flex;
+            align-items: center;
+            border:1px solid black;
+            margin-left: -40px;
+            width:100%;
+            margin-bottom:15px;
+        }
+        .head {
+            flex-grow: 1;
+        }
+      
+    </style>
+</head>
+<body>
+
+    <div class="container">
+     <h1>Add new Tasks! here </h1>
+        <div class="box">
+            <input type="text" id="text" placeholder="Add a new Task">
+            <button id="Add">Add</button>
+        </div>
+        <ul class="parent-list"> 
+            <li class="list-group">
+                <h3 class="head">Task Name</h3>
+                <button id="butt1" onclick="EditButton(this)">Edit</button>
+                <button id="butt2" onclick="RemoveButton(this)">Remove</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        
+        let add_btn=document.getElementById('Add')
+        let parentList=document.getElementById('parent-list')
+        add_btn.addEventListener('click',addChapter) 
+
+        function addChapter(e) {
+            let currentBtn=e.currentTarget
+            let currentInput=currentBtn.previousElementSibling
+            let currentChapterName=currentInput.value
+
+            let newLi=document.createElement('li')
+            newLi.className='list-group'
+            newLi.innerHTML=`<h3 class="head">${currentChapterName}</h3>
+                <button id="butt1" onclick="EditButton(this)">Edit</button>
+                <button id="butt2" onclick="RemoveButton(this)">Remove</button> `
+            
+                parentList.appendChild(newLi)
+
+        }
+
+        
+
+     
+
+
+
+    </script>
+    
+</body>
+</html>

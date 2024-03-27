@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            flex-direction: column;
+            
+        } 
+        #board {
+            display: grid;
+            grid-template-columns:repeat(3,100px);
+            gap:4px;
+            margin:20px;
+        } 
+        .cell {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        } 
+        #resetButton {
+            display: none;
+           padding:10px;
+           margin:10px;
+           border-radius: 6px;
+           border:1px solid dodgerblue;
+           color:dodgerblue;
+           cursor:pointer;
+           font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>TIC TAC TOE</h1>
+    <div id="board"></div>
+    <div id="result"></div>
+    <button id="resetButton" onclick="resetGame()">Reset Game</button>
+
+    <script>
+        const board=document.getElementById('board')
+        const resultDisplay=document.getElementById('result')
+        const resetButton=document.getElementById('resetButton')
+        
+        let gameBoard=Array(9).fill('')
+        let currentPlayer='X'
+
+        const winPatterns=[
+            [0,1,2],[3,4,5],[6,7,8],
+            [0,3,6],[1,4,7],[2,5,8],
+            [0,4,8],[2,4,7]
+        ] 
+
+        function checkWinner() {
+            
+            for (let pattern of winPatterns) {
+                const [a,b,c]=pattern
+                if(gameBoard[a]&&gameBoard[a]===gameBoard[b] && gameBoard[a]===gameBoard[c]) {
+                    return gameBoard[a]
+                }
+            }
+            return gameBoard.includes('')?null:'T'
+        } 
+        function isBoardFull() {
+            return gameBoard.includes('')
+        }
+
+        function playerMove(index) {
+            if(!gameBoard[index] && !checkWinner()) {
+                gameBoard[index]=currentPlayer
+                renderBoard()
+
+                const winner=checkWinner()
+                if(winner) {
+                    resultDisplay.textContent=winner==='T'?'Its a Tie Match':'You Won!'
+                    resetButton.style.display='block'
+                } else {
+                    currentPlayer='O'
+                    setTimeout(computerMove,500)
+                }
+            }
+        } 
+
+        function computerMove() {
+            if(currentPlayer==='O' && !checkWinner() && isBoardFull()) {
+                const bestMove=findMove()
+                gameBoard[bestMove]='O'
+                renderBoard()
+
+                const winner=checkWinner()
+                if(winner) {
+                    resultDisplay.textContent=winner==='T'?'Its a tie Match':'Computer wins'
+                    resetButton.style.display='block'
+                } else {
+                    currentPlayer="X"
+                }
+            }
+        } 
+
+        function findMove() {
+            for (let i=0;i<9;i++) {
+                if (gameBoard[i]==='') {
+                    gameBoard[i]='O'
+                    if(checkWinner()==='O') {
+                        gameBoard[i]=''
+                        return i
+                    }
+                    gameBoard[i]=''
+                }
+            }
+
+            for (let i=0;i<9;i++) {
+                if (gameBoard[i]==='') {
+                    gameBoard[i]='X'
+                    if(checkWinner()==='X') {
+                        gameBoard[i]=''
+                        return i
+                    }
+                    gameBoard[i]=''
+                }
+            } 
+
+            let emptyCells = gameBoard.reduce((acc, val, index) => (val === "" ? acc.concat(index) : acc), []);
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        }
+
+        function renderBoard() {
+            board.innerHTML=''
+            gameBoard.forEach((cell,index)=> {
+                const cellElement=document.createElement('div')
+                cellElement.className='cell'
+                cellElement.textContent=cell
+                cellElement.addEventListener('click',()=>playerMove(index))
+                board.appendChild(cellElement)
+            })
+        }
+
+        function resetGame() {
+            gameBoard=Array(9).fill('')
+            currentPlayer='X'
+            resultDisplay.textContent=''
+            resetButton.style.display='none'
+            renderBoard()
+        }
+        renderBoard()
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+#options {
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz App</h1>
+        <div id="question"></div>
+        <div id="options"></div>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+
+    <!--script-->
+    
+    <script>
+        const quizData = [
+    {
+        question: 'What is the capital of France?',
+        options: ['Berlin', 'Madrid', 'Paris', 'Rome'],
+        correctAnswer: 'Paris'
+    },
+    {
+        question: 'Which planet is known as the Red Planet?',
+        options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
+        correctAnswer: 'Mars'
+    },
+    // Add more questions as needed
+];
+
+let currentQuestionIndex = 0;
+
+function displayQuestion() {
+    const questionElement = document.getElementById('question');
+    const optionsElement = document.getElementById('options');
+    const currentQuestion = quizData[currentQuestionIndex];
+
+    questionElement.textContent = currentQuestion.question;
+    optionsElement.innerHTML = '';
+
+    currentQuestion.options.forEach((option) => {
+        const button = document.createElement('button');
+        button.textContent = option;
+        button.onclick = () => checkAnswer(option);
+        optionsElement.appendChild(button);
+    });
+}
+
+ function checkAnswer(userAnswer) {
+    const currentQuestion = quizData[currentQuestionIndex];
+
+    if (userAnswer === currentQuestion.correctAnswer) {
+        alert('Correct!');
+    } else {
+        alert('Incorrect. The correct answer is: ' + currentQuestion.correctAnswer);
+    }
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < quizData.length) {
+        displayQuestion();
+    } else {
+        alert('Quiz completed!');
+        // You can add more logic here, such as showing a summary or resetting the quiz.
+    }
+}       
+
+
+
+// Initial display
+displayQuestion();
+
+
+
+    </script>
+</body>
+</html>

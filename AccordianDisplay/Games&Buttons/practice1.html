@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height:100vh;
+            margin:20px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }  
+        #Add {
+            padding:8px;
+            font-size:1rem;
+        }
+        .container {
+            width:500px;
+        }
+        #input {
+            padding:8px;
+            font-size: 1rem;
+            margin-right:5px;
+            width:70%;
+        }
+        .box {
+            margin-bottom: 20px;
+        }
+        
+        li {
+            list-style-type: none;
+            display: flex;
+            border:1px solid black;
+            padding:10px;
+            margin-left: -40px;
+            margin-bottom: 10px;
+        }
+        span {
+            width:70%;
+        }
+        #butt2,#butt1 {
+            margin-left: 10px;
+            padding:8px;
+        }
+
+
+        
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div class="box">
+            <input type="text" placeholder="Add a new Task" id="input">
+            <button id="Add" onclick="addTask()">Add</button>
+        </div> 
+        <ul id="parentList"></ul>
+    </div>
+
+    <script>
+        const parentList=document.getElementById('parentList')
+        const addBtn=document.getElementById('Add')
+        const input=document.getElementById('input')
+        
+
+        function addTask() {
+            
+            const newTask=document.createElement('li')
+            const text=input.value
+            if(text.trim()==='') {
+                alert('Pls add a task')
+                return
+            }
+
+            newTask.innerHTML=`
+                   <span> ${text} </span>
+                    <button id='butt1' onclick='completeTask(this)'> complete </button>
+                    <button id='butt2' onclick='deleteTask(this)'> delete </button>
+                `
+            parentList.appendChild(newTask)
+            input.value=''
+        } 
+        function deleteTask(e) {
+        const task=e.parentNode
+        task.remove()
+        } 
+        
+        function completeTask(button) {
+        const task = button.parentNode;
+        task.classList.toggle('completed');
+        }
+
+
+
+
+    </script>
+
+
+</body>
+</html>

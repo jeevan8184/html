@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <style>
+        body {
+            margin:0;
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(to left top,yellow,lightblue,yellow);
+            min-height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: darkcyan;
+        } 
+        .box  {
+            background: rgba(255,255,255,0.3);
+            padding:20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            width:80%;
+            max-width: 450px;
+        }  
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 700;
+        } 
+        input {
+            width:70%;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+        } 
+        #result {
+            font-weight: 550;
+            font-size: 17px;
+        } 
+        #error {
+            color:red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box"> 
+        <h1>Weight Converter</h1>
+        <div class="container"> 
+            <label for="weight" id="label" >Pounds : </label>
+            <input type="number" placeholder="Enter Number" id="input">
+        </div> 
+        <p id="text" >Your weight in kg is : <span id="result"></span></p>
+        <p class="error" id="error"></p>
+    
+    </div> 
+
+    <script> 
+    const inputEl=document.getElementById('input')
+    const resultEl=document.getElementById('result')
+    const errorEl=document.getElementById('error')
+    let errorTime
+    let resultTime
+
+    function displayValue() {
+        if(inputEl.value<=0 || isNaN(+inputEl.value)) {
+            errorEl.textContent='Pls enter a valid number!...'
+            clearTimeout(errorTime)
+            errorTime=setTimeout(()=> {
+                errorEl.innerText=''
+                inputEl.value='' 
+            },2000)
+        } else {
+            resultEl.textContent=(+inputEl.value/2.2).toFixed(2)
+            clearTimeout(resultTime) 
+            resultTime=setTimeout(()=> {
+                inputEl.value=''
+                resultEl.textContent='' 
+            },8000) 
+        }
+
+    } 
+    inputEl.addEventListener('input',displayValue)
+
+    /*    */ 
+
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height:100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        #text {
+            padding:10px;
+            font-size: 1.2rem;
+            border-radius:7px;
+        }
+    </style>
+</head>
+<body id="body">
+
+    <div class="box">
+        <button id="text"  onclick="colorChange()">Color Change</button>
+
+    </div>
+
+    <script>
+
+        const colors=['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)','rgb(255,255,0)','rgb(255,255,255)','rgb(0,0,0)']
+         let index=0
+
+        function colorChange() {
+            
+                const colorPicker=colors[index]
+                document.getElementById('body').style.backgroundColor=colorPicker
+            
+            index++
+            colorNode()
+        } 
+        function colorNode() {
+            if (index===colors.length) {
+                index=0
+            }
+            colorChange()
+        }
+
+    </script>
+
+</body>
+</html>
